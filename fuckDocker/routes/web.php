@@ -15,17 +15,24 @@ use App\Http\Controllers\MainController;  //НОВЫЙ СИНТАКСИС 8 ЛА
 
 //Route::get('/', 'MainController@home');   //СТАРЫЙ СИНТАКСИС
 
-//Route::get('/about', 'MainController@about');  //СТАРЫЙ СИНТАКСИС
-
 Route::get('/', [MainController::class, 'home']);  //НОВЫЙ СИНТАКСИС 8 ЛАРАВЕЛ
 
 Route::get('/about', [MainController::class, 'about']);  //НОВЫЙ СИНТАКСИС 8 ЛАРАВЕЛ
 
 Route::get('/review', [MainController::class, 'review'])->name('review');
 
-Route::post('/review/check', [MainController::class, 'review_check']);
+Route::post('/review/check', [MainController::class, 'review_check']); // ссылка + что делаем в контроллере
+Route::post('/review/edit', [MainController::class, 'review_edit']); // ссылка + что делаем в контроллере
+Route::post('/review/delete', [MainController::class, 'review_delete']); // ссылка + что делаем в контроллере
+
+Route::get('/mynews', [MainController::class, 'mynews']);
+
+Route::get('/editnews/{id}', [MainController::class, 'editnews']);
 
 /*Route::get('/user/{id}/{name}', function ($id, $name) {
     return 'ID: '.$id.' Name '.$name;
 }); */
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
